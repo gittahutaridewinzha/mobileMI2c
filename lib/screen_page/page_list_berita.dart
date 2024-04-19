@@ -17,7 +17,7 @@ import 'package:untitled/screen_page/page_detail_berita.dart';
     Future<List<Datum>?> getBerita() async{
       try{
             http.Response response = await
-            http.get(Uri.parse('http://10.127.212.121/beritaDb/getBerita.php'));
+            http.get(Uri.parse('http://192.168.100.133/beritaDb/getBerita.php'));
                 return modelBeritaFromJson(response.body).data;
       }catch(e){
         ScaffoldMessenger.of(context).showSnackBar(
@@ -55,7 +55,7 @@ import 'package:untitled/screen_page/page_detail_berita.dart';
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(10),
                                     child: Image.network(
-                                      'http://10.126.71.39/beritaDb/gambar_berita/${data
+                                      'http://192.168.100.133/beritaDb/gambar_berita/${data
                                           ?.gambarBerita}',
                                       fit: BoxFit.fill,
                                     ),

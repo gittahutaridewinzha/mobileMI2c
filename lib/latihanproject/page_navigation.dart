@@ -1,11 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_styled_toast/flutter_styled_toast.dart';
+import 'package:untitled/latihanproject/page_listberitaedukasi.dart';
+import 'package:untitled/latihanproject/page_login.dart';
 import 'package:untitled/screen_page/page_column.dart';
 import 'package:untitled/screen_page/page_passing_data.dart';
 
-class PageNavigationBar extends StatelessWidget {
-  const PageNavigationBar({super.key});
+class PageNavigation extends StatelessWidget {
+  const PageNavigation({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,13 +24,13 @@ class PageNavigationBar extends StatelessWidget {
           child: ListView(
             children: [
               UserAccountsDrawerHeader(
-                accountName: Text("Miftahurrahmah"),
-                accountEmail: Text("miftahurrahmah@gmail.com"),
+                accountName: Text("Gitta Hutari Dewinzha"),
+                accountEmail: Text("Gitta@gmail.com"),
                 currentAccountPicture: CircleAvatar(
                   radius: 55,
                   child: Icon(
                     Icons.person,
-                    color: Colors.green,
+                    color: Colors.lightBlue,
                     size: 65,
                   ),
                 ),
@@ -41,48 +43,23 @@ class PageNavigationBar extends StatelessWidget {
                   => PageRow()
                   ));
                 },
-                title: Text('Row Widget'),
+                title: Text('Pegawai'),
               ),
               Divider(), //untuk mengasih jarak pemisah
               ListTile(
                 onTap: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => PageColumn()));
+                      MaterialPageRoute(builder: (context) => PageListBeritaEdukasi()));
                 },
-                title: Text('Column Widget'),
+                title: Text('Berita Edukasi'),
               ),
               Divider(),
               ListTile(
                 onTap: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => PageColumnRow()));
+                      MaterialPageRoute(builder: (context) => PageLoginEdukasi()));
                 },
-                title: Text('Row & Column'),
-
-              ),
-              Divider(),
-              ListTile(
-                onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => PageListHorizontal()));
-                },
-                title: Text('List Horizontal'),
-              ),
-              Divider(),
-              ListTile(
-                onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => PagePassingData()));
-                },
-                title: Text('Passing Data'),
-              ),
-              Divider(),
-              ListTile(
-                onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => PageLogin()));
-                },
-                title: Text('Login'),
+                title: Text('LogOut'),
               ),
             ],
           ),

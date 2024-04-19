@@ -1,10 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_styled_toast/flutter_styled_toast.dart';
+import 'package:untitled/latihanproject/Page_pegawai.dart';
+import 'package:untitled/latihanproject/page_bottom.dart';
+import 'package:untitled/latihanproject/page_listberitaedukasi.dart';
+import 'package:untitled/latihanproject/page_login.dart';
+import 'package:untitled/latihanproject/page_navigation.dart';
 import 'package:untitled/screen_page/page_bottom_navigation.dart';
 import 'package:untitled/screen_page/page_list_berita.dart';
 import 'package:untitled/screen_page/page_list_user.dart';
+import 'package:untitled/screen_page/page_login_api.dart';
 import 'package:untitled/screen_page/page_navigation_bar.dart';
+import 'package:untitled/screen_page/page_search_list.dart';
 
 class PageBeranda extends StatelessWidget {
   const PageBeranda({super.key});
@@ -49,7 +56,7 @@ class PageBeranda extends StatelessWidget {
                 );
                 //code untuk pindah page
                 Navigator.push(context, MaterialPageRoute(builder: (context)
-                => PageNavigationBar()
+                => PagePegawai()
                 ));
               },
                 child: Text('Page Navigation Utama',
@@ -106,7 +113,7 @@ class PageBeranda extends StatelessWidget {
 
                 //code untuk pindah page
                 Navigator.push(context, MaterialPageRoute(builder: (context)
-                => PageListUsers()
+                => PageLoginEdukasi()
                 ));
               },
                 child: Text('Page List User',
@@ -124,10 +131,28 @@ class PageBeranda extends StatelessWidget {
 
                 //code untuk pindah page
                 Navigator.push(context, MaterialPageRoute(builder: (context)
-                => PageListBerita()
+                => PageListBeritaEdukasi()
                 ));
               },
                 child: Text('Page List berita',
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 12
+                  ),
+                ),
+                color: Colors.green,
+                textColor: Colors.white,
+              ),
+
+              SizedBox(height: 8,),
+              MaterialButton(onPressed: (){
+
+                //code untuk pindah page
+                Navigator.push(context, MaterialPageRoute(builder: (context)
+                => PageLoginEdukasi()
+                ));
+              },
+                child: Text('Page Register & login',
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 12

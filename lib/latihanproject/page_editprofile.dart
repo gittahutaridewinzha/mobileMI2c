@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import "package:http/http.dart" as http;
 import 'package:untitled/latihanproject/Page_profile.dart';
+import 'package:untitled/latihanproject/page_bottom.dart';
 import 'package:untitled/utils/session_managerlat.dart';
 
 import '../model/model_editprofile.dart';
@@ -51,53 +52,42 @@ class _PageEditProfileState extends State<PageEditProfile> {
   //Proses untuk hit API
   bool isLoading = false;
 
-  Future<ModelUpdateProfile?> updateAccount() async {
-    //handle error
+  Future<void> updateAccount() async {
     try {
       setState(() {
         isLoading = true;
       });
 
-      http.Response response = await http.post(
-          Uri.parse('http://192.168.43.45/edukasi_server/updateUser.php'),
-          body: {
-            "username": txtUsername.text,
-            "email": txtEmail.text,
-            "nama": txtNama.text,
-            "nohp": txtNoHp.text
-          }
+      final response = await http.post(
+        Uri.parse('http://192.168.100.133/edukasi_server/updateUser.php'),
+        body: {
+          "username": txtUsername.text,
+          "email": txtEmail.text,
+          "nama": txtNama.text,
+          "nohp": txtNoHp.text,
+        },
       );
 
       print('Response JSON: ${response.body}');
 
-      ModelUpdateProfile data = modelUpdateProfileFromJson(response.body);
+      final data = modelUpdateProfileFromJson(response.body);
 
-      //Cek kondisi
       if (data.value == 1) {
-        //Kondisi ketika berhasil register
         setState(() {
           isLoading = false;
           ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text('${data.message}'))
+            SnackBar(content: Text('${data.message}')),
           );
-
-          //pindah ke page login
-          Navigator.pushAndRemoveUntil(
-              context, MaterialPageRoute(builder: (context) => PageProfileUser()
-          ), (route) => false);
-        });
-      } else if (data.value == 2) {
-        setState(() {
-          isLoading = false;
-          ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text('${data.message}'))
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => PageProfileUser()),
           );
         });
       } else {
         setState(() {
           isLoading = false;
           ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text('${data.message}'))
+            SnackBar(content: Text('${data.message}')),
           );
         });
       }
@@ -105,7 +95,7 @@ class _PageEditProfileState extends State<PageEditProfile> {
       setState(() {
         isLoading = false;
         ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(e.toString()))
+          SnackBar(content: Text('Terjadi kesalahan: $e')),
         );
       });
     }
@@ -181,12 +171,18 @@ class _PageEditProfileState extends State<PageEditProfile> {
 
               MaterialButton(
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    side: const BorderSide(width: 1, color: Colors.blueGrey)
+                  borderRadius: BorderRadius.circular(10),
+                  side: BorderSide(width: 1, color: Colors.blueGrey),
                 ),
                 onPressed: () {
-                  if (keyForm.currentState?.validate() == true) {
-                    updateAccount();
+                  if (keyForm.currentState!.validate()) {
+                    updateAccount().then((_) {
+                      // Pindah ke halaman PageProfileUser dalam PageNavigation
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(builder: (context) => PageBottomNavigation(initialIndex: 2)), // Ganti 2 dengan indeks PageProfileUser di PageNavigation
+                      );
+                    });
                   }
                 },
                 child: Text('Simpan'),

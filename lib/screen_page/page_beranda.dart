@@ -56,7 +56,7 @@ class PageBeranda extends StatelessWidget {
                 );
                 //code untuk pindah page
                 Navigator.push(context, MaterialPageRoute(builder: (context)
-                => PagePegawai()
+                => PageKaryawan()
                 ));
               },
                 child: Text('Page Navigation Utama',

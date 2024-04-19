@@ -24,7 +24,7 @@ class _PageListBeritaEdukasiState extends State<PageListBeritaEdukasi> {
   Future<void> fetchData() async {
     try {
       http.Response response = await http.get(
-          Uri.parse('http://10.126.142.213/edukasi_server/getBerita.php'));
+          Uri.parse('http://192.168.100.133/edukasi_server/getBerita.php'));
       setState(() {
         berita = modelBeritaEdukasiFromJson(response.body).data;
         filteredBerita = berita;
@@ -99,7 +99,7 @@ class _PageListBeritaEdukasiState extends State<PageListBeritaEdukasi> {
                           ClipRRect(
                             borderRadius: BorderRadius.circular(10),
                             child: Image.network(
-                              'http://10.126.142.213/edukasi_server/gambar_berita/${data?.gambar}',
+                              'http://192.168.100.133/edukasi_server/gambar_berita/${data?.gambar}',
                               height: 150,
                               width: double.infinity,
                               fit: BoxFit.cover,

@@ -127,25 +127,25 @@ class _PageProfileUserState extends State<PageProfileUser> {
                 leading: Icon(Icons.phone),
               ),
               SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context)
-                  => PageEditProfile()
-                  ));
-                },
-                style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  padding: EdgeInsets.symmetric(vertical: 12, horizontal: 24),
-                ),
-                child: Text(
-                  'Edit Profile',
-                  style: TextStyle(
-                    fontSize: 15,
-                  ),
-                ),
-              ),
+              // ElevatedButton(
+              //   onPressed: () {
+              //     Navigator.push(context, MaterialPageRoute(builder: (context)
+              //     => PageEditProfile()
+              //     ));
+              //   },
+              //   style: ElevatedButton.styleFrom(
+              //     shape: RoundedRectangleBorder(
+              //       borderRadius: BorderRadius.circular(10),
+              //     ),
+              //     padding: EdgeInsets.symmetric(vertical: 12, horizontal: 24),
+              //   ),
+              //   child: Text(
+              //     'Edit Profile',
+              //     style: TextStyle(
+              //       fontSize: 15,
+              //     ),
+              //   ),
+              // ),
 
             ],
           ),

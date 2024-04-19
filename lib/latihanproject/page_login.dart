@@ -30,7 +30,7 @@ class _PageLoginApiState extends State<PageLoginEdukasi> {
         isLoading = true;
       });
       http.Response res = await http.post(
-          Uri.parse('http://10.126.142.213/edukasi_server/login.php'),
+          Uri.parse('http://192.168.100.133/edukasi_server/login.php'),
           body: {
             "username": txtUsername.text,
             "password": txtPassword.text,
@@ -57,7 +57,7 @@ class _PageLoginApiState extends State<PageLoginEdukasi> {
           //kondisi berhasil dan pindah ke page login
           Navigator.pushAndRemoveUntil(
               context,
-              MaterialPageRoute(builder: (context) => PageBottomNavigation()),
+              MaterialPageRoute(builder: (context) => PageBottomNavigation(initialIndex: 1)),
                   (route) => false);
         });
         //kondisi email sudah ada

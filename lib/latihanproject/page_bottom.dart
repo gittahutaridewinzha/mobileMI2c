@@ -6,40 +6,33 @@ import 'package:untitled/latihanproject/Page_profile.dart';
 import 'package:untitled/latihanproject/page_listberitaedukasi.dart';
 
 class PageBottomNavigation extends StatefulWidget {
-  const PageBottomNavigation({super.key});
+  final int initialIndex; // Tambahkan parameter initialIndex
+  const PageBottomNavigation({Key? key, required this.initialIndex}) : super(key: key);
 
   @override
   State<PageBottomNavigation> createState() => _PageBottomNavigationState();
 }
 
-class _PageBottomNavigationState extends State<PageBottomNavigation>
-    with SingleTickerProviderStateMixin{
-
-  TabController? tabController;
+class _PageBottomNavigationState extends State<PageBottomNavigation> with SingleTickerProviderStateMixin {
+  late TabController tabController;
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    tabController = TabController(length: 3, vsync: this);
+    tabController = TabController(length: 3, vsync: this, initialIndex: widget.initialIndex); // Atur initialIndex dari TabController
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
-
       body: TabBarView(
         controller: tabController,
         children: const [
           PageListBeritaEdukasi(),
           PageProfileUser(),
-          PagePegawai()
-
-
-
+          PageKaryawan(),
         ],
       ),
-
       bottomNavigationBar: BottomAppBar(
         child: TabBar(
           controller: tabController,

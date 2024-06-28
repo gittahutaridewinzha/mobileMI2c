@@ -1,25 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:untitled/latihanUTS/page_login.dart';
 import 'package:untitled/latihanproject/page_login.dart';
-import 'package:untitled/model/model_registerlat.dart';
+import 'package:untitled/model/model_registeredu.dart';
 import 'package:untitled/latihanproject/page_login.dart';
 import 'package:untitled/loginApi/page_login_api.dart';
 import 'package:http/http.dart' as http;
 
-class PageRegister extends StatefulWidget {
-  const PageRegister({super.key});
+class PageRegisterEdu extends StatefulWidget {
+  const PageRegisterEdu({super.key});
 
   @override
-  State<PageRegister> createState() => _PageRegisterApiState();
+  State<PageRegisterEdu> createState() => _PageRegisterApiState();
 }
 
-class _PageRegisterApiState extends State<PageRegister> {
+class _PageRegisterApiState extends State<PageRegisterEdu> {
 
   //untuk mendapatkan value dari text field
-  TextEditingController txtNama = TextEditingController();
+  TextEditingController txtfullname = TextEditingController();
   TextEditingController txtUsername = TextEditingController();
   TextEditingController txtPassword = TextEditingController();
   TextEditingController txtEmail = TextEditingController();
-  TextEditingController txtNohp = TextEditingController();
 
 
 
@@ -28,7 +28,7 @@ class _PageRegisterApiState extends State<PageRegister> {
 
   //proses untuk hit api
   bool isLoading = false;
-  Future<ModelRegisterEdukasi?> registerAccount() async{
+  Future<ModelRegisterEdu?> registerAccount() async{
     //handle error
     try{
       setState(() {
@@ -37,14 +37,14 @@ class _PageRegisterApiState extends State<PageRegister> {
 
       http.Response response = await http.post(Uri.parse('http://192.168.100.133/edukasi_server/register.php'),
           body: {
-            "nama": txtNama.text,
+            "fullname": txtfullname.text,
             "username": txtUsername.text,
             "password": txtPassword.text,
             "email": txtEmail.text,
-            "nohp": txtNohp.text,
+
           }
       );
-      ModelRegisterEdukasi data = modelRegisterEdukasiFromJson(response.body);
+      ModelRegisterEdu data = modelRegisterEduFromJson(response.body);
       //cek kondisi
       if(data.value == 1){
         //kondisi ketika berhasil register
@@ -56,7 +56,7 @@ class _PageRegisterApiState extends State<PageRegister> {
 
           //pindah ke page login
           Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)
-          => PageLoginEdukasi()
+          => PageLoginEdu()
           ), (route) => false);
 
         });
@@ -117,7 +117,7 @@ class _PageRegisterApiState extends State<PageRegister> {
                         validator: (val) {
                           return val!.isEmpty ? "Field can't be empty" : null;
                         },
-                        controller: txtNama,
+                        controller: txtfullname,
                         decoration: InputDecoration(
                           labelText: 'Nama',
                           prefixIcon: Icon(Icons.person),
@@ -158,16 +158,16 @@ class _PageRegisterApiState extends State<PageRegister> {
                         ),
                       ),
                       SizedBox(height: 12),
-                      TextFormField(
-                        validator: (val) {
-                          return val!.isEmpty ? "Field can't be empty" : null;
-                        },
-                        controller: txtNohp,
-                        decoration: InputDecoration(
-                          labelText: 'No HP',
-                          prefixIcon: Icon(Icons.phone_android),
-                        ),
-                      ),
+                      // TextFormField(
+                      //   validator: (val) {
+                      //     return val!.isEmpty ? "Field can't be empty" : null;
+                      //   },
+                      //   controller: txtNohp,
+                      //   decoration: InputDecoration(
+                      //     labelText: 'No HP',
+                      //     prefixIcon: Icon(Icons.phone_android),
+                      //   ),
+                      // ),
                       SizedBox(height: 20),
                       Center(
                         child: isLoading

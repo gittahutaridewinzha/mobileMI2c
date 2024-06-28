@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import '../model/model_beritaedukasi.dart';
+import 'package:untitled/latihanUTS/page_login.dart';
+import 'package:untitled/latihanproject/Page_profile.dart';
+import '../model/model_beritaEdu.dart';
 
-class DetailBeritaEdukasi extends StatelessWidget {
+class DetailBeritaEdu extends StatelessWidget {
   final Datum? data;
 
-  const DetailBeritaEdukasi(this.data, {Key? key}) : super(key: key);
+  const DetailBeritaEdu(this.data, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,7 @@ class DetailBeritaEdukasi extends StatelessWidget {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(10),
               child: Image.network(
-                "http://10.126.106.111/edukasi_server/gambar_berita/${data?.gambar}",
+                "http://192.168.100.133/edukasi_server/gambar_berita/${data?.gambar}",
                 width: 200, // Ubah lebar gambar
                 height: 200, // Ubah tinggi gambar
                 fit: BoxFit.cover, // Sesuaikan gambar dengan lebar dan tinggi yang telah ditetapkan
@@ -40,7 +42,7 @@ class DetailBeritaEdukasi extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
-              data?.berita ?? "",
+              data?.konten ?? "",
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
               textAlign: TextAlign.justify,
             ),

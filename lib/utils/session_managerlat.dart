@@ -2,7 +2,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class SessionLatihanManager{
   int? value;
-  String? idUser, userName, Nama, email, nohp;
+  String? idUser, userName, fullname, email;
 
   // Simpan session
   Future<void> saveSession(int val, String id, String username, String nama, String email, String nohp) async{
@@ -10,9 +10,9 @@ class SessionLatihanManager{
     sharedPreferences.setInt("value", val);
     sharedPreferences.setString("id", id);
     sharedPreferences.setString("username", username);
-    sharedPreferences.setString("nama", nama);
+    sharedPreferences.setString("fullname", nama);
     sharedPreferences.setString("email", email);
-    sharedPreferences.setString("nohp", nohp);
+
   }
 
   //Get session
@@ -21,9 +21,9 @@ class SessionLatihanManager{
     value = sharedPreferences.getInt("value");
     idUser = sharedPreferences.getString("id");
     userName = sharedPreferences.getString("username");
-    Nama = sharedPreferences.getString("nama");
+    fullname = sharedPreferences.getString("nama");
     email = sharedPreferences.getString("email");
-    nohp = sharedPreferences.getString("nohp");
+
     return value;
   }
 

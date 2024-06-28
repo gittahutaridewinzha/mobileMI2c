@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/model/model_register.dart';
-import 'package:untitled/screen_page/page_login_api.dart';
+import 'package:untitled/loginApi/page_login_api.dart';
 import 'package:http/http.dart' as http;
 
 class PageRegisterApi extends StatefulWidget {

@@ -3,8 +3,8 @@ import 'package:untitled/latihanproject/page_bottom.dart';
 import 'package:untitled/latihanproject/page_listberitaedukasi.dart';
 import 'package:untitled/latihanproject/page_register.dart';
 import 'package:untitled/model/model_loginlat.dart';
-import 'package:untitled/screen_page/page_list_berita.dart';
-import 'package:untitled/screen_page/page_register_api.dart';
+import 'package:untitled/loginApi/page_list_berita.dart';
+import 'package:untitled/loginApi/page_register_api.dart';
 import 'package:http/http.dart' as http;
 import 'package:untitled/utils/session_managerlat.dart';
 
@@ -30,7 +30,7 @@ class _PageLoginApiState extends State<PageLoginEdukasi> {
         isLoading = true;
       });
       http.Response res = await http.post(
-          Uri.parse('http://192.168.100.133/edukasi_server/login.php'),
+          Uri.parse('http://10.126.106.111/edukasi_server/login.php'),
           body: {
             "username": txtUsername.text,
             "password": txtPassword.text,

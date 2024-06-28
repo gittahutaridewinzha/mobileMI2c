@@ -7,9 +7,9 @@ import 'package:untitled/latihanproject/page_listberitaedukasi.dart';
 import 'package:untitled/latihanproject/page_login.dart';
 import 'package:untitled/latihanproject/page_navigation.dart';
 import 'package:untitled/screen_page/page_bottom_navigation.dart';
-import 'package:untitled/screen_page/page_list_berita.dart';
+import 'package:untitled/loginApi/page_list_berita.dart';
 import 'package:untitled/screen_page/page_list_user.dart';
-import 'package:untitled/screen_page/page_login_api.dart';
+import 'package:untitled/loginApi/page_login_api.dart';
 import 'package:untitled/screen_page/page_navigation_bar.dart';
 import 'package:untitled/screen_page/page_search_list.dart';
 

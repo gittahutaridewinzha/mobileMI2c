@@ -3,7 +3,7 @@
   import 'package:untitled/model/model_berita.dart';
 
   import 'package:http/http.dart' as http;
-import 'package:untitled/screen_page/page_detail_berita.dart';
+import 'package:untitled/loginApi/page_detail_berita.dart';
 
   class PageListBerita extends StatefulWidget {
     const PageListBerita({super.key});

@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:untitled/latihanUTS/page_bottomLAt.dart';
+import 'package:untitled/latihanUTS/page_detailberita.dart';
+import 'package:untitled/latihanUTS/page_login.dart';
+import 'package:untitled/latihanproject/Page_profile.dart';
 import 'package:untitled/latihanproject/page_detailberitaedukasi.dart';
-import 'package:untitled/model/model_beritaedukasi.dart';
+import 'package:untitled/model/model_beritaEdu.dart';
 import 'package:http/http.dart' as http;
 
-class PageListBeritaEdukasi extends StatefulWidget {
-  const PageListBeritaEdukasi({Key? key});
+class PageListBeritaEdu extends StatefulWidget {
+  const PageListBeritaEdu({Key? key});
 
   @override
-  State<PageListBeritaEdukasi> createState() => _PageListBeritaEdukasiState();
+  State<PageListBeritaEdu> createState() => _PageListBeritaEdukasiState();
 }
 
-class _PageListBeritaEdukasiState extends State<PageListBeritaEdukasi> {
+class _PageListBeritaEdukasiState extends State<PageListBeritaEdu> {
   TextEditingController txtCari = TextEditingController();
   List<Datum>? berita;
   List<Datum>? filteredBerita;
@@ -24,9 +28,9 @@ class _PageListBeritaEdukasiState extends State<PageListBeritaEdukasi> {
   Future<void> fetchData() async {
     try {
       http.Response response = await http.get(
-          Uri.parse('http://10.126.106.111/edukasi_server/getBerita.php'));
+          Uri.parse('http://192.168.100.133/edukasi_server/getBerita.php'));
       setState(() {
-        berita = modelBeritaEdukasiFromJson(response.body).data;
+        berita = modelBeritaEduFromJson(response.body).data;
         filteredBerita = berita;
       });
     } catch (e) {
@@ -49,12 +53,35 @@ class _PageListBeritaEdukasiState extends State<PageListBeritaEdukasi> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-         title: Text('Berita Edukasi',
-         style: TextStyle(
-           fontWeight: FontWeight.bold,
-         ),),
+        title: Text('Berita',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),),
         centerTitle: true,
         // backgroundColor: Colors.green, // Ubah warna latar belakang appbar
+        actions: [
+          IconButton(
+            onPressed: () {
+              // Navigasi ke halaman profil
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => PageBottom(initialIndex: 1)), // Ganti ProfilePage() dengan halaman profil Anda
+              );
+            },
+            icon: Icon(Icons.account_circle),
+          ),
+          IconButton(
+            onPressed: () {
+              // Lakukan proses logout di sini, seperti membersihkan token atau data sesi dan navigasi ke halaman login
+              // Misalnya:
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => PageLoginEdu()), // Ganti ProfilePage() dengan halaman profil Anda
+              );// Ganti '/login' dengan rute halaman login Anda
+            },
+            icon: Icon(Icons.exit_to_app),
+          ),
+        ],
       ),
       body: Padding(
         padding: EdgeInsets.all(10),
@@ -86,7 +113,7 @@ class _PageListBeritaEdukasiState extends State<PageListBeritaEdukasi> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (_) => DetailBeritaEdukasi(data),
+                          builder: (_) => DetailBeritaEdu(data),
                         ),
                       );
                     },
@@ -99,7 +126,7 @@ class _PageListBeritaEdukasiState extends State<PageListBeritaEdukasi> {
                           ClipRRect(
                             borderRadius: BorderRadius.circular(10),
                             child: Image.network(
-                              'http://10.126.106.111/edukasi_server/gambar_berita/${data?.gambar}',
+                              'http://192.168.100.133/edukasi_server/gambar_berita/${data?.gambar}',
                               height: 150,
                               width: double.infinity,
                               fit: BoxFit.cover,
@@ -120,7 +147,7 @@ class _PageListBeritaEdukasiState extends State<PageListBeritaEdukasi> {
                                 ),
                                 SizedBox(height: 5), // Tambahkan jarak antar judul dan teks berita
                                 Text(
-                                  "${data?.berita}",
+                                  "${data?.konten}",
                                   maxLines: 2,
                                   overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
